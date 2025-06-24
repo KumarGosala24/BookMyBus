@@ -1,6 +1,6 @@
 # 🚌 Bus Ticket Booking System
 
-![Bus Image](https://github.com/KumarGosala24/BookMyBus/blob/7cf9c3ab70bd957d6cebd1b18cfab341c6839baf/React/travels/bus.jpeg)
+![Bus Image](https://github.com/KumarGosala24/BookMyBus/blob/ef52981cf72438a8886a2a33a1a7a18cfdb28627/Bus.jpg)
 
 A full-stack **Bus Ticket Booking Application** built with **Django (Backend)**, **React.js (Frontend)**, and **MongoDB (Database)**. This system allows users to search buses, book tickets, and manage bookings with a responsive and user-friendly interface.
 
