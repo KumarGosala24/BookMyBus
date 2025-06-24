@@ -12,7 +12,6 @@ A full-stack **Bus Ticket Booking Application** built with **Django (Backend)**,
 - 🎨 **Frontend**: React.js (with Axios, React Router, etc.)  
 - 🗂️ **Database**: MongoDB (via Djongo or MongoEngine)  
 - 🔐 **Authentication**: JWT-based login/signup for secure access  
-- ☁️ **Deployment Ready**: Configured for deployment on platforms like Heroku, Render, or Vercel
 
 ---
 
