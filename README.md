@@ -49,5 +49,41 @@ python -m venv env
 source env/bin/activate  # On Windows: env\Scripts\activate
 pip install -r requirements.txt
 python manage.py runserver
+```
+### Frontend Setup (React)
+
+```bash
+# Navigate to the frontend folder
+cd frontend
+
+# Install dependencies
+npm install
+
+# Run the React app
+npm start
+```
+
+### 🧠 Future Enhancements
+- 🔄 Real-time seat availability with WebSockets
+
+- 💳 Payment gateway integration (Razorpay, Stripe)
+
+- 📧 Email/SMS ticket confirmation
+
+- 📱 PWA support and mobile optimization
+
+- 📊 Admin dashboard with analytics
+
+### 🤝 Contributing
+- Contributions, issues, and feature requests are welcome!
+- Feel free to fork the repo and submit a pull request.
+
+### 📄 License
+- This project is licensed under the MIT License.
+
+
+### 👨‍💻 Author
+Gosala Sowjanya Kumar
+[LinkedIn](https://www.linkedin.com/in/sowjanya-kumar-gosala/)
 
 
