@@ -178,23 +178,43 @@ const UserBookings = ({ token, userId }) => {
   // -------------------------
   // Cancel Booking Function
   // -------------------------
+  // const handleCancel = async (bookingId) => {
+  //   if (!window.confirm('Are you sure you want to cancel this booking?')) return
+  //   try {
+  //     await axios.post(
+  //       `http://localhost:8000/api/cancel-booking/${bookingId}/`,
+  //       {},
+  //       { headers: { Authorization: `Token ${token}` } }
+  //     )
+  //     // Update local state after successful cancellation
+  //     setBookings((prev) =>
+  //       prev.map((b) => (b.id === bookingId ? { ...b, canceled: true } : b))
+  //     )
+  //     alert('Booking canceled successfully.')
+  //   } catch (error) {
+  //     alert(error.response?.data?.message || 'Failed to cancel booking')
+  //   }
+  // }
+
+
+
   const handleCancel = async (bookingId) => {
-    if (!window.confirm('Are you sure you want to cancel this booking?')) return
-    try {
-      await axios.post(
-        `http://localhost:8000/api/cancel-booking/${bookingId}/`,
-        {},
-        { headers: { Authorization: `Token ${token}` } }
-      )
-      // Update local state after successful cancellation
-      setBookings((prev) =>
-        prev.map((b) => (b.id === bookingId ? { ...b, canceled: true } : b))
-      )
-      alert('Booking canceled successfully.')
-    } catch (error) {
-      alert(error.response?.data?.message || 'Failed to cancel booking')
-    }
+  if (!window.confirm('Are you sure you want to cancel this booking?')) return
+  try {
+    await axios.post(
+      `http://localhost:8000/api/cancel-booking/${bookingId}/`,
+      {},
+      { headers: { Authorization: `Token ${token}` } }
+    )
+    // Remove booking from local state
+    setBookings((prev) => prev.filter((b) => b.id !== bookingId))
+
+    alert('Booking canceled successfully.')
+  } catch (error) {
+    alert(error.response?.data?.message || 'Failed to cancel booking')
   }
+}
+
 
   if (isLoading) {
     return (
