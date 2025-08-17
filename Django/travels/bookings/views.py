@@ -75,3 +75,57 @@ class UserBookingView(APIView):
         bookings = Booking.objects.filter(user_id= user_id)
         serializer = BookingSerializer(bookings, many=True)
         return Response(serializer.data)
+    
+
+
+
+class CancelBookingView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, booking_id):
+        try:
+            # Fetch the booking
+            booking = Booking.objects.get(id=booking_id, user=request.user)
+            
+            if booking.seat.is_booked is False:
+                return Response({'error': 'Booking is already canceled'}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Mark seat as available
+            booking.seat.is_booked = False
+            booking.seat.save()
+
+            # Optional: you can delete the booking or just mark it canceled
+            # booking.delete()  # If you want to remove it from DB
+            # Or mark canceled field if you have it:
+            # booking.canceled = True
+            # booking.save()
+
+            return Response({'success': f'Seat {booking.seat.seat_number} booking canceled'}, status=status.HTTP_200_OK)
+
+        except Booking.DoesNotExist:
+            return Response({'error': 'Booking not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+# class CancelBookingView(APIView):
+#     """
+#     Cancel a booking (only if it belongs to the logged-in user)
+#     Also free the seat so it can be booked again
+#     """
+#     permission_classes = [IsAuthenticated]
+
+#     def delete(self, request, booking_id):
+#         try:
+#             booking = Booking.objects.get(id=booking_id, user=request.user)
+
+#             # Free the seat
+#             booking.seat.is_booked = False
+#             booking.seat.save()
+
+#             # Delete the booking
+#             booking.delete()
+
+#             return Response({'message': 'Booking cancelled successfully'}, status=status.HTTP_200_OK)
+
+#         except Booking.DoesNotExist:
+#             return Response({'error': 'Booking not found or not yours'}, status=status.HTTP_404_NOT_FOUND)
